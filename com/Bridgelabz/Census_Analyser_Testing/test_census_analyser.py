@@ -5,6 +5,8 @@ import pytest
 CENSUS_CSV_FILE_PATH = "C:/Users/Saurabh/PycharmProjects/IndianStatesCensusAnalyser/data/IndiaStateCensusData.csv"
 CENSUS_CSV_FILE_WRONG_PATH = "IndiaStateCensusData.csv"
 CENSUS_CSV_FILE_WRONG_TYPE = "C:/Users/Saurabh/PycharmProjects/IndianStatesCensusAnalyser/data/IndiaStateCensusData.xls"
+CENSUS_CSV_FILE_WRONG_DELIMITER = "C:/Users/Saurabh/PycharmProjects/IndianStatesCensusAnalyser/data/USCensusData.xls"
+CENSUS_CSV_WRONG_HEADER_FILE_PATH = "C:/Users/Saurabh/PycharmProjects/IndianStatesCensusAnalyser/data/IndiaStateCensusData1.csv"
 
 
 def test_record_counter():
@@ -29,5 +31,17 @@ def test_record_counter_for_wrong_file_type():
     Check if exception gets raised or not
     """
     csv_loader = CSVLoader(CENSUS_CSV_FILE_WRONG_TYPE)
+    with pytest.raises(CensusAnalyserError):
+        csv_loader.record_counter()
+
+
+def test_record_counter_for_wrong_delimiter():
+    csv_loader = CSVLoader(CENSUS_CSV_FILE_WRONG_DELIMITER)
+    with pytest.raises(CensusAnalyserError):
+        csv_loader.record_counter()
+
+
+def test_record_counter_for_wrong_header():
+    csv_loader = CSVLoader(CENSUS_CSV_WRONG_HEADER_FILE_PATH)
     with pytest.raises(CensusAnalyserError):
         csv_loader.record_counter()

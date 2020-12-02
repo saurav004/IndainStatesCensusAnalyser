@@ -14,7 +14,6 @@ class CSVLoader:
         :return: number of records in file
         """
         try:
-
             col_names = repr(IndiaCensusCSV()).split(",")
             data = pd.read_csv(self.path, usecols=col_names)
             return len(data)
