@@ -1,6 +1,6 @@
-import pandas as pd
 from com.Bridgelabz.CensusAnalyser.CSVBuilder import CSVBuilder
 from com.Bridgelabz.CensusAnalyser.CensusAnalysisErrors import CensusAnalyserError
+from com.Bridgelabz.CensusAnalyser.CSVloader import CSVLoader
 
 
 class IndiaCensusCSV(CSVBuilder):
@@ -17,8 +17,7 @@ class IndiaCensusCSV(CSVBuilder):
 
     def record_counter(self):
         try:
-            col_names = self.__repr__().split(",")
-            data = pd.read_csv(self.path, usecols=col_names)
+            data = CSVLoader(self.path, self).load_csv()
             return len(data)
         except FileNotFoundError:
             raise CensusAnalyserError("Check file path")
