@@ -52,6 +52,12 @@ def test_record_counter_for_wrong_header():
         csv_loader.record_counter()
 
 
+def test_given_csv_when_sorted_should_sort_correctly():
+    csv_loader = IndiaCensusCSV(CENSUS_CSV_FILE_PATH)
+    data = csv_loader.sort_data(sort_by='State')
+    assert data.iloc[-1]['State'] == 'West Bengal' and data.iloc[0]['State'] == 'Andhra Pradesh'
+
+
 def test_record_counter_csv_states():
     """
     check if length of records is same or not
@@ -88,3 +94,9 @@ def test_record_counter_for_wrong_header_csv_states():
     csv_states_loader = StateCensusAnalyser(CENSUS_CSV_WRONG_HEADER_FILE_PATH_STATE_CENSUS)
     with pytest.raises(CensusAnalyserError):
         csv_states_loader.record_counter()
+
+
+def test_given_csv_when_sorted_should_sort_correctly_for_state():
+    csv_loader = StateCensusAnalyser(CENSUS_CSV_FILE_PATH_STATE_CENSUS)
+    data = csv_loader.sort_data(sort_by='StateCode')
+    assert data.iloc[-1]['StateCode'] == 'WB' and data.iloc[0]['StateCode'] == 'AD'
