@@ -12,4 +12,5 @@ if __name__ == "__main__":
     print(object_of_loader.record_counter())
     object_of_loader.sort_data(sort_by='State')
     object_of_loader.sort_data(sort_by='Population', ascending_or_not=False)
+    object_of_loader.sort_data(sort_by='DensityPerSqKm', ascending_or_not=False)
     object_of_loader.convert_to_json()
