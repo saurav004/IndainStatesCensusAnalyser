@@ -20,8 +20,8 @@ class IndiaCensusCSV(CSVBuilder):
         return len(IndiaCensusCSV.data)
 
     @staticmethod
-    def sort_data(sort_by=None):
-        IndiaCensusCSV.data = IndiaCensusCSV.data.sort_values(sort_by)
+    def sort_data(sort_by=None, ascending_or_not=True):
+        IndiaCensusCSV.data = IndiaCensusCSV.data.sort_values(sort_by, ascending=ascending_or_not)
         print('after sorting')
         print(IndiaCensusCSV.data)
         return IndiaCensusCSV.data

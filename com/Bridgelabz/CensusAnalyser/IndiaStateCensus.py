@@ -20,8 +20,8 @@ class StateCensusAnalyser(CSVBuilder):
         return len(StateCensusAnalyser.data)
 
     @staticmethod
-    def sort_data(sort_by):
-        StateCensusAnalyser.data = StateCensusAnalyser.data.sort_values(sort_by)
+    def sort_data(sort_by, ascending_or_not=True):
+        StateCensusAnalyser.data = StateCensusAnalyser.data.sort_values(sort_by, ascending=ascending_or_not)
         print('after sorting')
         print(StateCensusAnalyser.data)
         return StateCensusAnalyser.data
