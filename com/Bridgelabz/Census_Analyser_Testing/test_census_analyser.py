@@ -70,6 +70,12 @@ def test_given_csv_when_sorted_should_sort_correctly_by_population_density():
     assert data.iloc[0]['State'] == 'Bihar' and data.iloc[-1]['State'] == 'Arunachal Pradesh'
 
 
+def test_given_csv_when_sorted_should_sort_correctly_by_area():
+    csv_loader = IndiaCensusCSV(CENSUS_CSV_FILE_PATH)
+    data = csv_loader.sort_data(sort_by='AreaInSqKm', ascending_or_not=False)
+    assert data.iloc[0]['State'] == 'Rajasthan' and data.iloc[-1]['State'] == 'Goa'
+
+
 def test_record_counter_csv_states():
     """
     check if length of records is same or not
